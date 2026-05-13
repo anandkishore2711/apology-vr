@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", "Georgia", serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-primary: #fbc2eb; /* Soft Pink */
+  --color-secondary: #a6c1ee; /* Soft Blue */
+  --color-accent: #f8ccff; /* Lavender */
+  --color-gold: #d4af37;
+  --animate-spin-slow: spin 8s linear infinite;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --atmosphere-bg: #0d0a0b;
+}
+
+body {
+  background-color: #0d0a0b;
+  color: #fff;
+  overflow-x: hidden;
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, #442233 0%, transparent 60%),
+    radial-gradient(circle at 80% 70%, #223344 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, #331133 0%, transparent 70%);
+  filter: blur(80px);
+  opacity: 0.9;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: rgba(251, 194, 235, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: screen;
+  box-shadow: 0 0 20px rgba(251, 194, 235, 0.5);
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.card-glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #fbc2eb, #a6c1ee, #fbc2eb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+  animation: shimmer 5s ease-in-out infinite;
+}
+
+.gold-text {
+  color: #d4af37;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.scroll-fade {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+.memories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
