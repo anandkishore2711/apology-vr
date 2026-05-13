@@ -271,8 +271,10 @@ const PerspectiveCard = ({ children }: { children: ReactNode }) => {
 const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
-  // Using a direct audio URL for better reliability in the preview environment
-  const audioUrl = "https://www.bensound.com/bensound-music/bensound-tenderness.mp3"; 
+  // Assets set up for your GitHub deployment:
+  // 1. Upload your song as 'song.mp3' to the 'public' folder
+  // 2. Upload your photos as 'photo1.jpg' and 'photo2.jpg' to the 'public' folder
+  const audioUrl = "/song.mp3"; 
 
   const togglePlay = () => {
     if (!audioRef.current) return;
@@ -287,10 +289,12 @@ const MusicPlayer = () => {
         })
         .catch(e => {
           console.error("Audio playback failed:", e);
-          // Fallback if the URL fails
+          // Auto-fallback to a CDN link if local file is missing (good for preview)
           if (audioRef.current) {
-            audioRef.current.src = "https://cdn.pixabay.com/audio/2022/03/10/audio_b2f90a5d21.mp3";
-            audioRef.current.play().then(() => setIsPlaying(true)).catch(err => console.error("Fallback failed:", err));
+            audioRef.current.src = "https://cdn.pixabay.com/audio/2022/05/27/audio_1808f3030e.mp3";
+            audioRef.current.play()
+              .then(() => setIsPlaying(true))
+              .catch(err => console.error("Everything failed:", err));
           }
         });
     }
@@ -443,10 +447,13 @@ export default function App() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 max-w-6xl w-full">
           <motion.div 
             whileHover={{ scale: 1.02, y: -5 }}
-            className="card-glass overflow-hidden aspect-[4/5] relative group shadow-2xl"
+            className="card-glass overflow-hidden aspect-[4/5] relative group shadow-2xl w-full"
           >
             <img 
-              src="https://images.unsplash.com/photo-1518621736915-f371c4198fb1?auto=format&fit=crop&q=80&w=800" 
+              src="/photo1.jpg" 
+              onError={(e) => {
+                e.currentTarget.src = "https://images.unsplash.com/photo-1518621736915-f371c4198fb1?auto=format&fit=crop&q=80&w=800";
+              }}
               alt="Together" 
               className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700"
               referrerPolicy="no-referrer"
@@ -459,10 +466,13 @@ export default function App() {
 
           <motion.div 
             whileHover={{ scale: 1.02, y: -5 }}
-            className="card-glass overflow-hidden aspect-[4/5] relative group shadow-2xl"
+            className="card-glass overflow-hidden aspect-[4/5] relative group shadow-2xl w-full"
           >
             <img 
-              src="https://images.unsplash.com/photo-1516589174184-c6858b16ecbe?auto=format&fit=crop&q=80&w=800" 
+              src="/photo2.jpg" 
+              onError={(e) => {
+                e.currentTarget.src = "https://images.unsplash.com/photo-1516589174184-c6858b16ecbe?auto=format&fit=crop&q=80&w=800";
+              }}
               alt="Joy" 
               className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700" 
               referrerPolicy="no-referrer"
