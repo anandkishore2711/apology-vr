@@ -273,7 +273,7 @@ const MusicPlayer = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   // Assets set up for your GitHub deployment:
   // 1. Upload your song as 'song.mp3' to the 'public' folder
-  // 2. Upload your photos as 'photo1.jpg' and 'photo2.jpg' to the 'public' folder
+  // 2. Upload your photos as 'photo1.jpeg' and 'photo2.jpeg' to the 'public' folder
   const audioUrl = "/song.mp3"; 
 
   const togglePlay = () => {
@@ -450,7 +450,7 @@ export default function App() {
             className="card-glass overflow-hidden aspect-[4/5] relative group shadow-2xl w-full"
           >
             <img 
-              src="/photo1.jpg" 
+              src="/photo1.jpeg" 
               onError={(e) => {
                 e.currentTarget.src = "https://images.unsplash.com/photo-1518621736915-f371c4198fb1?auto=format&fit=crop&q=80&w=800";
               }}
@@ -469,7 +469,7 @@ export default function App() {
             className="card-glass overflow-hidden aspect-[4/5] relative group shadow-2xl w-full"
           >
             <img 
-              src="/photo2.jpg" 
+              src="/photo2.jpeg" 
               onError={(e) => {
                 e.currentTarget.src = "https://images.unsplash.com/photo-1516589174184-c6858b16ecbe?auto=format&fit=crop&q=80&w=800";
               }}
